@@ -1,1 +1,1 @@
-#!/bin/bash
+#sudo !/bin/bash

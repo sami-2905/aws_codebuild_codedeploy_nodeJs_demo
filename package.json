@@ -1,5 +1,5 @@
 {
-  "name": "codedeploydemo",
+  "name": "codedeploydemofolder ",
   "version": "1.0.0",
   "description": "To show how CodeDeploy Works",
   "main": "index.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git-codecommit.us-west-2.amazonaws.com/v1/repos/codeDeployDemo"
+    "url": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/codeDeployDemo"
   },
   "keywords": [
     "node"
   ],
-  "author": "Sandip Das",
+  "author": "Samiksha Sharma",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.3",

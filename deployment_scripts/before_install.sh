@@ -1,4 +1,4 @@
-#!/bin/bash
+#sudo !/bin/bash
 FILE=/home/ubuntu/app/index.js
 if test -f "$FILE"; then
    echo "$FILE exists"
