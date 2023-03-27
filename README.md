@@ -1,6 +1,9 @@
 # aws_codebuild_codedeploy_nodeJs_demo
+<<<<<<< HEAD
 #summary - at first the image was created of original code and pushed to ECR, then the task definition was created. Then ECS cluster was created and inside it service was created that will deploy the task on EC2 instance. Later, to automate the process, that whenever there is some change in the code and the latest image was pushed to ECR, it will automatically get deployed on EC2 through ECS automation.
 
+=======
+>>>>>>> c7ddfb9b2746215bbd328f8abda8ae1bece9e6a0
 This repository contains sample codes to work with AWS 
 
 This Project build_script directory contains build related script, check buildspec.yml file I have integrated the same. 
@@ -43,4 +46,8 @@ sudo ./install auto
 node-app-youtube-demo
 
 
+<<<<<<< HEAD
 aws deploy push --application-name NodeAppServerDeployment --s3-location "s3://node-app-youtube-demo/codedeploydemo/app.zip" --ignore-hidden-files 
+=======
+aws deploy push --application-name NodeAppServerDeployment --s3-location "s3://node-app-youtube-demo/codedeploydemo/app.zip" --ignore-hidden-files 
+>>>>>>> c7ddfb9b2746215bbd328f8abda8ae1bece9e6a0
