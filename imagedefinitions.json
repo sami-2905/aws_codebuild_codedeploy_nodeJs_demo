@@ -1,0 +1,6 @@
+[
+    {
+        "name": "nodeapp-container",
+        "imageUri": "551747796630.dkr.ecr.us-east-1.amazonaws.com/cicddemo:latest"
+    }
+]
