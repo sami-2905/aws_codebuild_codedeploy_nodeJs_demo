@@ -6,7 +6,7 @@ pipeline {
         IMAGE_REPO_NAME="jenkins-pipeline-build"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        CONTAINER_NAME = "my-container"
+        //CONTAINER_NAME = "my-container"
         // INSTANCE_IP = "3.215.175.8"
         // SSH_KEY_FILE = "virginia-key.pem"
     }
@@ -52,10 +52,9 @@ pipeline {
             steps {
                 script {
                     sh "docker pull ${REPOSITORY_URI}:${IMAGE_TAG}"
-                    sh "docker run -d --name ${CONTAINER_NAME} -p 80:80 ${REPOSITORY_URI}:${IMAGE_TAG}"
+                    sh "docker run -d -p 80:80 ${REPOSITORY_URI}:${IMAGE_TAG}"
                 }
             }
         }
     }
 } 
-
