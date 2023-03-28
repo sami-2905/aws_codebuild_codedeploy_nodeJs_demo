@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        AWS_ACCOUNT_ID="551747796630"
+        AWS_DEFAULT_REGION="us-east-1"
+        IMAGE_REPO_NAME="jenkins-pipeline-build"
+        IMAGE_TAG="latest"
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+        CONTAINER_NAME = "my-container"
+        // INSTANCE_IP = "3.215.175.8"
+        // SSH_KEY_FILE = "virginia-key.pem"
+    }
+   
+    stages {
+        
+         stage('Logging into AWS ECR') {
+            steps {
+                script {
+                    def ecr_login_cmd = "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                    sh "${ecr_login_cmd}"
+                }
+                 
+            }
+        }
+        
+        stage('Cloning Git') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sami-2905/aws_codebuild_codedeploy_nodeJs_demo.git']])     
+            }
+        }
+  
+        // Building Docker images
+        stage('Building image') {
+            steps{
+                script {
+                    dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                }
+            }
+        }
+       
+        // Uploading Docker images into AWS ECR
+        stage('Pushing to ECR') {
+            steps{  
+                script {
+                    sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}"
+                    sh "docker push ${REPOSITORY_URI}:${IMAGE_TAG}"
+                }
+            }
+        }
+        
+        stage('Deploying image on container in AWS EC2') {
+            steps {
+                script {
+                    sh "docker pull ${REPOSITORY_URI}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${CONTAINER_NAME} -p 80:80 ${REPOSITORY_URI}:${IMAGE_TAG}"
+                }
+            }
+        }
+    }
+} 
+

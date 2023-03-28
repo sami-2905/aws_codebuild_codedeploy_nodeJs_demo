@@ -1,0 +1,1 @@
+pipeline-script will build image from dockerfile in the github repo and then push the image to aws ecr and then will deploy that image in container in aws ec2. both docker and jenkins are running in the same ec2
