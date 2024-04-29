@@ -1,5 +1,5 @@
 #sudo !/bin/bash
-cd /home/ubuntu/app
+cd /home/ec2-user/app
 cp /home/root/app/index.js .
 cp /home/root/app/package.json .
 cp /home/root/app/package-lock.json .
