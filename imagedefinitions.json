@@ -1,6 +1,6 @@
 [
     {
-        "name": "mycont",
-        "imageUri": "741401799044.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest"
+        "name": "cicd-cont",
+        "imageUri": "741401799044.dkr.ecr.us-east-1.amazonaws.com/cicd-demo:latest"
     }
 ]
