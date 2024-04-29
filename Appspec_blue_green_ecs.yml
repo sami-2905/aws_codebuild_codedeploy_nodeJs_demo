@@ -3,23 +3,23 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:111222333444:task-definition/my-task-definition-family-name:1"
+        TaskDefinition: "arn:aws:ecs:us-east-1:741401799044:task-definition/cicddemo-task:1"
         LoadBalancerInfo:
-          ContainerName: "SampleApplicationName"
-          ContainerPort: 80
+          ContainerName: "cicd-cont"
+          ContainerPort: 3000
 # Optional properties
         PlatformVersion: "LATEST"
         NetworkConfiguration:
           AwsvpcConfiguration:
-            Subnets: ["subnet-1234abcd","subnet-5678abcd"]
-            SecurityGroups: ["sg-12345678"]
-            AssignPublicIp: "ENABLED"
+            Subnets: ["subnet-0ff4fe8e44da0aaeb","subnet-0bb9ac4f07bf49dd1"]
+            SecurityGroups: ["sg-0c473e58161eef99b"]
+            AssignPublicIp: "DISABLED"
         CapacityProviderStrategy:
           - Base: 1
-            CapacityProvider: "FARGATE_SPOT"
+            CapacityProvider: "Infra-ECS-Cluster-cicddemo-cluster-0a5c765b-EC2CapacityProvider-4fgMWHeK499A"
             Weight: 2
           - Base: 0
-            CapacityProvider: "FARGATE"
+            CapacityProvider: "Infra-ECS-Cluster-cicddemo-cluster-0a5c765b-EC2CapacityProvider-4fgMWHeK499A"
             Weight: 1
 Hooks:
   - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
